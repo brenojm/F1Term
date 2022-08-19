@@ -1,4 +1,4 @@
 
 
 
-export const DailyWord = "LEWIS";
+export const DailyWord = "GASLY";
