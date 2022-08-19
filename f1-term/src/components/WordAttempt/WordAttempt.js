@@ -4,12 +4,9 @@ import { CharBox, CharText, Container } from "./styles";
 
 
 export const WordAttempt = ({ c1, c2, c3, c4, c5 }) => {
-    var repeticao = false;
     var letras = [];
     var palavra = c1 + c2 + c3 + c4 + c5
     const confereRepeticao = (char, posicao) => {
-        // let charCerto;
-        // let charPosicao;
 
         for (let i = 0; i < 5; i++) {
             if (char === palavra.substr(i, 1) && char === DailyWord.substr(i, 1)) {

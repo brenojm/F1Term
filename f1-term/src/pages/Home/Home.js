@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Header } from '../../components/Header/Header';
 import { WordAttempt } from '../../components/WordAttempt/WordAttempt';
 import { DailyWord } from '../../Daily/Daily';
 import { CharInput, Container, ContainerAttempts, ContainerInput, ContainerResult, ResultText, SubmitButton } from './styles';
@@ -89,16 +88,16 @@ export const Home = () => {
                             }
                         })}
                     >
-                        <img src={'https://cdn-icons-png.flaticon.com/512/876/876777.png'} width={25} height={25} />
+                        <img src={'https://cdn-icons-png.flaticon.com/512/876/876777.png'} alt={"resposta"} width={25} height={25} />
                     </SubmitButton>
 
                 </ContainerInput>
                 :
                 acertou ?
                         <ContainerResult>
-                            <img src='https://cdn-icons-png.flaticon.com/512/190/190411.png' width={40} height={40}/>
+                            <img src='https://cdn-icons-png.flaticon.com/512/190/190411.png' alt={"acertou"} width={40} height={40}/>
 
-                            {attempt == 1 ?
+                            {attempt === 1 ?
                                 <ResultText>Parabéns!! Você acertou em {attempt} tentativa!</ResultText> 
                             :
                             <ResultText>Parabéns!! Você acertou em {attempt} tentativas!</ResultText>
@@ -108,7 +107,7 @@ export const Home = () => {
                     :
 
                     <ContainerResult>
-                        <img src='https://cdn-icons-png.flaticon.com/512/7887/7887076.png' width={40} height={40} />
+                        <img src='https://cdn-icons-png.flaticon.com/512/7887/7887076.png' alt={"errou"} width={40} height={40} />
                         <ResultText>
 
                             Você usou todas as suas {attempt} tentativas!! </ResultText>
