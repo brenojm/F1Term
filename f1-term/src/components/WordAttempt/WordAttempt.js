@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DailyWord } from "../../Daily/Daily";
 import { CharBox, Container } from "./styles";
 

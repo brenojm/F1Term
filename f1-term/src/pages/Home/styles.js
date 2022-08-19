@@ -16,6 +16,7 @@ export const CharInput = styled.input`
     margin: 0 0.5rem;
     text-align: center;
     background-color: gray;
+    text-transform:uppercase;
 `;
 
 export const SubmitButton = styled.button`  

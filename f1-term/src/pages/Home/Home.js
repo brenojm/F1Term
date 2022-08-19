@@ -12,14 +12,18 @@ export const Home = () => {
     const [c5, setC5] = useState("");
     const [attempt, setAttempt] = useState(0);
     const [acertou, setAcertou] = useState(false);
+    const [unallowed, setUnallowed] = useState(false);
 
     const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
+
 
 
 
     const adicionaPalavra = (palavra) => {
         setPalavrasDigitadas([...palavrasDigitadas, palavra]);
     }
+
+    
 
 
     return (
@@ -38,32 +42,43 @@ export const Home = () => {
                     <div>
                         <CharInput
                             type="text" maxLength={1} required
-                            onChange={((e) => setC1(e.target.value.toUpperCase()))}
+                            onChange={((e) => [setC1(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()),setUnallowed(false)])}
                         />
                         <CharInput
                             type="text" maxLength={1} required
-                            onChange={((e) => setC2(e.target.value.toUpperCase()))}
+                            onChange={((e) => [setC2(e.target.value.toUpperCase()),setUnallowed(false)])}
                         />
                         <CharInput
                             type="text" maxLength={1} required
-                            onChange={((e) => setC3(e.target.value.toUpperCase()))}
+                            onChange={((e) => [setC3(e.target.value.toUpperCase()),setUnallowed(false)])}
                         />
                         <CharInput
                             type="text" maxLength={1} required
-                            onChange={((e) => setC4(e.target.value.toUpperCase()))}
+                            onChange={((e) => [setC4(e.target.value.toUpperCase()),setUnallowed(false)])}
                         />
                         <CharInput
                             type="text" maxLength={1} required
-                            onChange={((e) => setC5(e.target.value.toUpperCase()))}
+                            onChange={((e) => [setC5(e.target.value.toUpperCase()),setUnallowed(false)])}
                         />
                     </div>
                     <div>
+                        {unallowed ? 
+                        <div>Incompleto</div>
+                        :
+                        <></>
+                    
+                    }
                         <SubmitButton
                             onClick={(() => {
+                                if(c1 !== "" && c2 !== "" && c3 !== "" && c4 !== "" && c5 !== ""){
                                 let palavra = c1 + c2 + c3 + c4 + c5
                                 adicionaPalavra(palavra)
                                 if(palavra === DailyWord){setAcertou(true)}
-                                setAttempt(attempt+1)
+                                setAttempt(attempt+1) 
+                                setUnallowed(false)
+                                } else {
+                                    setUnallowed(true)
+                                }
                             })}
                         >
                             Enviar
