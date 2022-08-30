@@ -22,8 +22,8 @@ export const CharBox = styled.div`
 `;
 
 export const CharText = styled.p`
-padding: 0;
-margin: 0;
-color:#fff; 
-text-shadow:#696969 1px -1px, #696969 -1px 1px, #696969 1px 1px, #696969 -1px -1px
+    padding: 0;
+    margin: 0;
+    color:#fff; 
+    text-shadow:#696969 1px -1px, #696969 -1px 1px, #696969 1px 1px, #696969 -1px -1px
 `;

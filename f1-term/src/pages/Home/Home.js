@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { WordAttempt } from '../../components/WordAttempt/WordAttempt';
 import { DailyWord } from '../../Daily/Daily';
 import { CharInput, Container, ContainerAttempts, ContainerInput, ContainerResult, ResultText, SubmitButton } from './styles';
 
 export const Home = () => {
+
+
+    const input1 = useRef();
+    const input2 = useRef();
+    const input3 = useRef();
+    const input4 = useRef();
+    const input5 = useRef();
+
 
     const [c1, setC1] = useState("");
     const [c2, setC2] = useState("");
@@ -17,12 +25,30 @@ export const Home = () => {
     const [palavrasDigitadas, setPalavrasDigitadas] = useState([]);
 
 
-
+    const focusInput = (inputElement) => {
+        inputElement.current.focus();
+    };
 
     const adicionaPalavra = (palavra) => {
         setPalavrasDigitadas([...palavrasDigitadas, palavra]);
+    };
+
+    const apagar = (event) => {
+        var x = event.keyCode;
+        if (x === 8) {
+            
+            return console.log("apagou");
+            
+        } 
+        console.log("escreveu");
     }
 
+    const decidir = (event) => {
+        apagar(event) ? 
+        focusInput(input1)
+        :
+        focusInput(input2)
+    }
 
 
 
@@ -37,31 +63,41 @@ export const Home = () => {
                 ))}
 
             </ContainerAttempts>
+
             {attempt < 6 && !acertou ?
 
                 <ContainerInput>
                     <div>
+                        <p>Tentativa {attempt} de 6</p>
+                    </div>
+                    <div>
                         <CharInput
+                            ref={input1}
                             type="text" maxLength={1} value={c1} required
-                            onChange={((e) => [setC1(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false)])}
+                            onChange={((e) => [setC1(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false), focusInput(input2)])}
                         />
                         <CharInput
+                            ref={input2}
                             type="text" maxLength={1} value={c2} required
-                            onChange={((e) => [setC2(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false)])}
+                            onChange={((e) => [setC2(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false), focusInput(input3)])}
                         />
                         <CharInput
+                            ref={input3}
                             type="text" maxLength={1} value={c3} required
-                            onChange={((e) => [setC3(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false)])}
+                            onChange={((e) => [setC3(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false), focusInput(input4)])}
                         />
                         <CharInput
+                            ref={input4}
                             type="text" maxLength={1} value={c4} required
-                            onChange={((e) => [setC4(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false)])}
+                            onChange={((e) => [setC4(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false), apagar ? focusInput(input3) : focusInput(input5)])}
                         />
                         <CharInput
+                            ref={input5}
                             type="text" maxLength={1} value={c5} required
-                            onChange={((e) => [setC5(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false)])}
+                            onChange={((e) => [setC5(e.target.value.replace(/[^a-z]/gi, '').toUpperCase()), setUnallowed(false), decidir])}
                         />
                     </div>
+
 
                     {unallowed ?
                         <div>Incompleto</div>
@@ -94,15 +130,15 @@ export const Home = () => {
                 </ContainerInput>
                 :
                 acertou ?
-                        <ContainerResult>
-                            <img src='https://cdn-icons-png.flaticon.com/512/190/190411.png' alt={"acertou"} width={40} height={40}/>
+                    <ContainerResult>
+                        <img src='https://cdn-icons-png.flaticon.com/512/190/190411.png' alt={"acertou"} width={40} height={40} />
 
-                            {attempt === 1 ?
-                                <ResultText>Parabéns!! Você acertou em {attempt} tentativa!</ResultText> 
+                        {attempt === 1 ?
+                            <ResultText>Parabéns!! Você acertou em {attempt} tentativa!</ResultText>
                             :
                             <ResultText>Parabéns!! Você acertou em {attempt} tentativas!</ResultText>
-                            }
-                        </ContainerResult>
+                        }
+                    </ContainerResult>
 
                     :
 
@@ -116,14 +152,6 @@ export const Home = () => {
 
 
             }
-            {/* <div>AJUDA</div> */}
-
-
-
-
-
-
-
         </Container>
     );
 };
