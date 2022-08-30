@@ -15,7 +15,7 @@ export const Header = () => {
                 <Link style={{textDecoration:"unset", color:"black"}} to="/"><TitleText>F1 TERM</TitleText></Link>
             </div>
             <div>
-                <Link to="/help"><img src="https://cdn-icons-png.flaticon.com/512/4238/4238836.png" width={20} height={20} /></Link>
+                <Link to="/help"><img src="https://cdn-icons-png.flaticon.com/512/4238/4238836.png" alt="help" width={20} height={20} /></Link>
             </div>
         </Container>
     )
